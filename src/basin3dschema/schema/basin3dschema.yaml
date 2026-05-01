@@ -1,12 +1,14 @@
 ---
 id: https://w3id.org/dschristianson/basin3dschema
 name: basin3dschema
-title: basin3dschema
+title: BASIN-3D Schema with ObservationMeasurementTimeSeries and MonitoringFeature
 description: |-
-  This is the project description.
+  Modified BASIN-3D schema including ObservationMeasurementTimeSeries and MonitoringFeature classes
+  for representing time-series observational data and monitoring locations.
 license: MIT
 see_also:
   - https://dschristianson.github.io/basin3dschema
+  - https://github.com/BASIN-3D/basin3d
 
 prefixes:
   basin3dschema: https://w3id.org/dschristianson/basin3dschema/
@@ -15,6 +17,7 @@ prefixes:
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
   example: https://example.org/
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
 default_prefix: basin3dschema
 default_range: string
 
@@ -32,6 +35,136 @@ classes:
       - description
     class_uri: schema:Thing
 
+  # BASIN-3D Core Classes
+
+  DataSource:
+    description: >-
+      Represents a data source containing credentials, location, and identification
+    slots:
+      - id
+      - name
+      - id_prefix
+      - location
+      - credentials
+
+  Coordinates:
+    description: >-
+      Spatial coordinates with absolute positioning information
+    slots:
+      - absolute
+      - representative
+
+  AbsoluteCoordinates:
+    description: >-
+      Absolute coordinate positioning with horizontal and vertical components
+    slots:
+      - horizontal_position
+      - vertical_extent
+
+  HorizontalPosition:
+    description: >-
+      Horizontal positioning information with datum, type, and coordinates
+    slots:
+      - datum
+      - coordinate_type
+      - units
+      - x_coordinate
+      - y_coordinate
+
+  VerticalExtent:
+    description: >-
+      Vertical positioning information with datum, type, and elevation
+    slots:
+      - datum
+      - distance_units
+      - encoding_method
+      - resolution
+      - vertical_extent_type
+      - value
+
+  RelatedSamplingFeatureComplex:
+    description: >-
+      Complex relationship between sampling features
+    slots:
+      - datasource
+      - datasource_ids
+      - id
+      - original_id
+      - related_sampling_feature
+      - related_sampling_feature_type
+      - role
+
+  TimeSeriesResult:
+    description: >-
+      Time series result data containing values and quality information
+    slots:
+      - result_quality
+      - value
+
+  MonitoringFeature:
+    is_a: NamedThing
+    description: >-
+      A monitoring feature represents a real-world location where observations are made.
+      This corresponds to the feature_of_interest in observation data.
+    slots:
+      - coordinates
+      - description_reference
+      - feature_type
+      - original_id
+      - related_sampling_feature_complex
+      - shape
+      - utc_offset
+    slot_usage:
+      id:
+        description: Unique identifier for the monitoring feature
+        required: true
+      name:
+        description: Human-readable name of the monitoring feature
+      description:
+        description: Detailed description of the monitoring feature
+
+  ObservationMeasurementTimeSeries:
+    description: >-
+      Represents a time-series of measurement observations collected at a monitoring feature.
+      This is the main class for time-series observational data in BASIN-3D.
+    slots:
+      - aggregation_duration
+      - datasource
+      - feature_of_interest
+      - feature_of_interest_type
+      - observed_property
+      - phenomenon_time
+      - result
+      - result_quality
+      - sampling_medium
+      - statistic
+      - time_reference_position
+      - observation_type
+      - unit_of_measurement
+      - utc_offset
+
+  # Collection classes
+  MonitoringFeatureCollection:
+    tree_root: true
+    description: >-
+      A collection of monitoring features
+    attributes:
+      monitoring_features:
+        range: MonitoringFeature
+        multivalued: true
+        inlined_as_list: true
+
+  ObservationCollection:
+    tree_root: true
+    description: >-
+      A collection of observation measurement time series
+    attributes:
+      observations:
+        range: ObservationMeasurementTimeSeries
+        multivalued: true
+        inlined_as_list: true
+
+  # Original classes from base schema
   Person:
     is_a: NamedThing
     description: >-
@@ -56,6 +189,7 @@ classes:
         inlined_as_list: true
 
 slots:
+  # Base slots
   id:
     identifier: true
     slot_uri: schema:identifier
@@ -67,6 +201,141 @@ slots:
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
+
+  datasource_ids:
+    description: Data source identifiers
+    multivalued: true
+
+  # DataSource slots
+  id_prefix:
+    description: Prefix used for identifiers from this data source
+  location:
+    description: URL or location of the data source
+    range: uri
+  credentials:
+    description: Authentication credentials for the data source
+    range: string
+
+  # Coordinate slots
+  absolute:
+    description: Absolute coordinate positioning
+    range: AbsoluteCoordinates
+  representative:
+    description: Representative coordinate positioning
+    range: AbsoluteCoordinates
+  coordinates:
+    description: Spatial coordinates of the feature
+    range: Coordinates
+
+  horizontal_position:
+    description: Horizontal position information
+    range: HorizontalPosition
+    multivalued: true
+    inlined_as_list: true
+  vertical_extent:
+    description: Vertical extent information
+    range: VerticalExtent
+    multivalued: true
+    inlined_as_list: true
+
+  # Position detail slots
+  datum:
+    description: Geodetic or vertical datum
+  coordinate_type:
+    description: Type of coordinate system
+    range: CoordinateTypeEnum
+  units:
+    description: Units of measurement
+  x_coordinate:
+    description: X coordinate (longitude for geographic)
+    range: float
+  y_coordinate:
+    description: Y coordinate (latitude for geographic)
+    range: float
+  distance_units:
+    description: Units for distance measurements
+  encoding_method:
+    description: Method used for encoding the measurement
+  resolution:
+    description: Resolution of the measurement
+    range: float
+  vertical_extent_type:
+    description: Type of vertical extent measurement
+    range: VerticalExtentTypeEnum
+  value:
+    description: Numeric value of the measurement
+    range: float
+
+  # Observation slots
+  aggregation_duration:
+    description: Duration over which data is aggregated
+    range: AggregationDurationEnum
+  datasource:
+    description: Data source for this observation
+    range: DataSource
+  feature_of_interest:
+    description: The monitoring feature where the observation was made
+    range: MonitoringFeature
+    required: true
+  feature_of_interest_type:
+    description: Type of the feature of interest
+    range: FeatureTypeEnum
+  observed_property:
+    description: The phenomenon that was observed
+  phenomenon_time:
+    description: Time when the phenomenon occurred
+    range: datetime
+  result:
+    description: Result of the observation measurement
+    range: TimeSeriesResult
+  result_quality:
+    description: Quality indicators for the result
+    multivalued: true
+  sampling_medium:
+    description: Medium in which the sampling occurred
+    range: SamplingMediumEnum
+  statistic:
+    description: Statistical measure applied to the data
+    range: StatisticEnum
+  time_reference_position:
+    description: Position of time reference within aggregation period
+    range: TimeReferencePositionEnum
+  observation_type:
+    description: Type of observation
+    range: ObservationTypeEnum
+  unit_of_measurement:
+    description: Units of the measured values
+  utc_offset:
+    description: UTC offset for time values
+    range: integer
+
+  # MonitoringFeature specific slots
+  description_reference:
+    description: Reference to additional description information
+  feature_type:
+    description: Type of monitoring feature
+    range: FeatureTypeEnum
+  original_id:
+    description: Original identifier from the data source
+  related_sampling_feature_complex:
+    description: Complex relationships to other sampling features
+    range: RelatedSamplingFeatureComplex
+    multivalued: true
+    inlined_as_list: true
+  shape:
+    description: Geometric shape of the feature
+    range: ShapeEnum
+
+  # Related sampling feature slots
+  related_sampling_feature:
+    description: Identifier of related sampling feature
+  related_sampling_feature_type:
+    description: Type of related sampling feature
+  role:
+    description: Role of the relationship
+    range: RelationshipRoleEnum
+
+  # Original Person slots
   primary_email:
     slot_uri: schema:email
     description: The main email address of a person
@@ -82,6 +351,142 @@ slots:
     description: living or dead status
 
 enums:
+  # Enums for BASIN-3D classes
+  AggregationDurationEnum:
+    description: Duration over which observations are aggregated
+    permissible_values:
+      YEAR:
+        description: Annual aggregation
+      MONTH:
+        description: Monthly aggregation
+      DAY:
+        description: Daily aggregation
+      HOUR:
+        description: Hourly aggregation
+      MINUTE:
+        description: Minute-level aggregation
+
+  CoordinateTypeEnum:
+    description: Type of coordinate system
+    permissible_values:
+      GEOGRAPHIC:
+        description: Geographic coordinate system
+      PROJECTED:
+        description: Projected coordinate system
+      LOCAL:
+        description: Local coordinate system
+
+  FeatureTypeEnum:
+    description: Type of monitoring or sampling feature
+    permissible_values:
+      POINT:
+        description: Point feature
+      VERTICAL_PATH:
+        description: Vertical curve feature
+      HORIZONTAL_PATH:
+        description: Horizontal cure feature
+      PLOT:
+        description: sampling area defined by a polygon
+      SITE:
+        description: area of research project defined by a polygon
+      REGION:
+        description: Regional feature
+      SUBBASIN:
+        description: Sub-basin feature
+      BASIN:
+        description: Basin feature
+
+  ObservationTypeEnum:
+    description: Type of observation measurement
+    permissible_values:
+      MEASUREMENT_TVP_TIMESERIES:
+        description: Time-value pair time series measurement
+      MEASUREMENT_TIMESERIES:
+        description: Time series measurement
+
+  SamplingMediumEnum:
+    description: Medium in which sampling occurred
+    permissible_values:
+      WATER:
+        description: Water sampling medium
+      GAS:
+        description: Gas sampling medium
+      SOLID_PHASE:
+        description: Solid sampling medium
+      OTHER:
+        description: Other sampling medium
+      NOT_APPLICABLE:
+        description: not applicable
+
+  ShapeEnum:
+    description: Geometric shape of features
+    permissible_values:
+      POINT:
+        description: Point geometry
+      LINE:
+        description: Line geometry
+      SOLID:
+        description: Volume geometry
+      SURFACE:
+        description: Surface geometry, described by polygon
+
+  StatisticEnum:
+    description: Statistical measures
+    permissible_values:
+      MEAN:
+        description: Mean/average value
+      MIN:
+        description: Minimum value
+      MAX:
+        description: Maximum value
+      TOTAL:
+        description: Sum of values
+
+  TimeReferencePositionEnum:
+    description: Position of time reference within aggregation period
+    permissible_values:
+      START:
+        description: Start of time period
+      MIDDLE:
+        description: Middle of time period
+      END:
+        description: End of time period
+
+  VerticalExtentTypeEnum:
+    description: Type of vertical extent measurement
+    permissible_values:
+      ALTITUDE:
+        description: Altitude above sea level
+      DEPTH:
+        description: Depth below surface
+      HEIGHT:
+        description: Height above ground
+
+  RelationshipRoleEnum:
+    description: Role in sampling feature relationships
+    permissible_values:
+      PARENT:
+        description: Parent relationship
+      CHILD:
+        description: Child relationship
+
+  ResultQualityEnum:
+    description: Quality code for the result
+    permissible_values:
+      UNVALIDATED:
+        description: The result is raw or unchecked for quality. Synonyms Unchecked, Preliminary, No QC
+      VALIDATED:
+        description: The result has been checked for quality and no issues identified. Synonyms Checked, Accepted, Pass, OK, Good
+      REJECTED:
+        description: The result is identified as poor quality. Synonyms Poor, Bad, Unaccepted
+      SUSPECTED:
+        description: The result's quality is suspect. Synonyms Questionable, Doubtful, Spike/Noise, Flagged
+      ESTIMATED:
+        description: The result is estimated. Synonyms Interpolated, Modeled.
+      NOT_SUPPORTED:
+        description: not supported
+
+  # Original enum
   PersonStatus:
     permissible_values:
       ALIVE:
