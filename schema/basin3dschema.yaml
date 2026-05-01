@@ -1,8 +1,12 @@
 name: basin3dschema
-description: This is the project description.
-title: basin3dschema
+description: 'Modified BASIN-3D schema including ObservationMeasurementTimeSeries
+  and MonitoringFeature classes
+
+  for representing time-series observational data and monitoring locations.'
+title: BASIN-3D Schema with ObservationMeasurementTimeSeries and MonitoringFeature
 see_also:
 - https://dschristianson.github.io/basin3dschema
+- https://github.com/BASIN-3D/basin3d
 id: https://w3id.org/dschristianson/basin3dschema
 imports:
 - linkml:types
@@ -26,6 +30,9 @@ prefixes:
   example:
     prefix_prefix: example
     prefix_reference: https://example.org/
+  geo:
+    prefix_prefix: geo
+    prefix_reference: http://www.w3.org/2003/01/geo/wgs84_pos#
 default_prefix: basin3dschema
 default_range: string
 types:
@@ -298,6 +305,211 @@ types:
     uri: xsd:string
     repr: str
 enums:
+  AggregationDurationEnum:
+    name: AggregationDurationEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/AggregationDurationEnum
+    description: Duration over which observations are aggregated
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      YEAR:
+        text: YEAR
+        description: Annual aggregation
+      MONTH:
+        text: MONTH
+        description: Monthly aggregation
+      DAY:
+        text: DAY
+        description: Daily aggregation
+      HOUR:
+        text: HOUR
+        description: Hourly aggregation
+      MINUTE:
+        text: MINUTE
+        description: Minute-level aggregation
+  CoordinateTypeEnum:
+    name: CoordinateTypeEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/CoordinateTypeEnum
+    description: Type of coordinate system
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      GEOGRAPHIC:
+        text: GEOGRAPHIC
+        description: Geographic coordinate system
+      PROJECTED:
+        text: PROJECTED
+        description: Projected coordinate system
+      LOCAL:
+        text: LOCAL
+        description: Local coordinate system
+  FeatureTypeEnum:
+    name: FeatureTypeEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/FeatureTypeEnum
+    description: Type of monitoring or sampling feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      POINT:
+        text: POINT
+        description: Point feature
+      VERTICAL_PATH:
+        text: VERTICAL_PATH
+        description: Vertical curve feature
+      HORIZONTAL_PATH:
+        text: HORIZONTAL_PATH
+        description: Horizontal cure feature
+      PLOT:
+        text: PLOT
+        description: sampling area defined by a polygon
+      SITE:
+        text: SITE
+        description: area of research project defined by a polygon
+      REGION:
+        text: REGION
+        description: Regional feature
+      SUBBASIN:
+        text: SUBBASIN
+        description: Sub-basin feature
+      BASIN:
+        text: BASIN
+        description: Basin feature
+  ObservationTypeEnum:
+    name: ObservationTypeEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/ObservationTypeEnum
+    description: Type of observation measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      MEASUREMENT_TVP_TIMESERIES:
+        text: MEASUREMENT_TVP_TIMESERIES
+        description: Time-value pair time series measurement
+      MEASUREMENT_TIMESERIES:
+        text: MEASUREMENT_TIMESERIES
+        description: Time series measurement
+  SamplingMediumEnum:
+    name: SamplingMediumEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/SamplingMediumEnum
+    description: Medium in which sampling occurred
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      WATER:
+        text: WATER
+        description: Water sampling medium
+      GAS:
+        text: GAS
+        description: Gas sampling medium
+      SOLID_PHASE:
+        text: SOLID_PHASE
+        description: Solid sampling medium
+      OTHER:
+        text: OTHER
+        description: Other sampling medium
+      NOT_APPLICABLE:
+        text: NOT_APPLICABLE
+        description: not applicable
+  ShapeEnum:
+    name: ShapeEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/ShapeEnum
+    description: Geometric shape of features
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      POINT:
+        text: POINT
+        description: Point geometry
+      LINE:
+        text: LINE
+        description: Line geometry
+      SOLID:
+        text: SOLID
+        description: Volume geometry
+      SURFACE:
+        text: SURFACE
+        description: Surface geometry, described by polygon
+  StatisticEnum:
+    name: StatisticEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/StatisticEnum
+    description: Statistical measures
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      MEAN:
+        text: MEAN
+        description: Mean/average value
+      MIN:
+        text: MIN
+        description: Minimum value
+      MAX:
+        text: MAX
+        description: Maximum value
+      TOTAL:
+        text: TOTAL
+        description: Sum of values
+  TimeReferencePositionEnum:
+    name: TimeReferencePositionEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/TimeReferencePositionEnum
+    description: Position of time reference within aggregation period
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      START:
+        text: START
+        description: Start of time period
+      MIDDLE:
+        text: MIDDLE
+        description: Middle of time period
+      END:
+        text: END
+        description: End of time period
+  VerticalExtentTypeEnum:
+    name: VerticalExtentTypeEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/VerticalExtentTypeEnum
+    description: Type of vertical extent measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      ALTITUDE:
+        text: ALTITUDE
+        description: Altitude above sea level
+      DEPTH:
+        text: DEPTH
+        description: Depth below surface
+      HEIGHT:
+        text: HEIGHT
+        description: Height above ground
+  RelationshipRoleEnum:
+    name: RelationshipRoleEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/RelationshipRoleEnum
+    description: Role in sampling feature relationships
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      PARENT:
+        text: PARENT
+        description: Parent relationship
+      CHILD:
+        text: CHILD
+        description: Child relationship
+  ResultQualityEnum:
+    name: ResultQualityEnum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/ResultQualityEnum
+    description: Quality code for the result
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    permissible_values:
+      UNVALIDATED:
+        text: UNVALIDATED
+        description: The result is raw or unchecked for quality. Synonyms Unchecked,
+          Preliminary, No QC
+      VALIDATED:
+        text: VALIDATED
+        description: The result has been checked for quality and no issues identified.
+          Synonyms Checked, Accepted, Pass, OK, Good
+      REJECTED:
+        text: REJECTED
+        description: The result is identified as poor quality. Synonyms Poor, Bad,
+          Unaccepted
+      SUSPECTED:
+        text: SUSPECTED
+        description: The result's quality is suspect. Synonyms Questionable, Doubtful,
+          Spike/Noise, Flagged
+      ESTIMATED:
+        text: ESTIMATED
+        description: The result is estimated. Synonyms Interpolated, Modeled.
+      NOT_SUPPORTED:
+        text: NOT_SUPPORTED
+        description: not supported
   PersonStatus:
     name: PersonStatus
     definition_uri: https://w3id.org/dschristianson/basin3dschema/PersonStatus
@@ -326,9 +538,11 @@ slots:
     - schema:identifier
     slot_uri: schema:identifier
     identifier: true
-    owner: NamedThing
+    owner: RelatedSamplingFeatureComplex
     domain_of:
     - NamedThing
+    - DataSource
+    - RelatedSamplingFeatureComplex
     range: uriorcurie
     required: true
   name:
@@ -339,9 +553,10 @@ slots:
     mappings:
     - schema:name
     slot_uri: schema:name
-    owner: NamedThing
+    owner: DataSource
     domain_of:
     - NamedThing
+    - DataSource
     range: string
   description:
     name: description
@@ -355,6 +570,442 @@ slots:
     domain_of:
     - NamedThing
     range: string
+  datasource_ids:
+    name: datasource_ids
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/datasource_ids
+    description: Data source identifiers
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:datasource_ids
+    owner: RelatedSamplingFeatureComplex
+    domain_of:
+    - RelatedSamplingFeatureComplex
+    range: string
+    multivalued: true
+  id_prefix:
+    name: id_prefix
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/id_prefix
+    description: Prefix used for identifiers from this data source
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:id_prefix
+    owner: DataSource
+    domain_of:
+    - DataSource
+    range: string
+  location:
+    name: location
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/location
+    description: URL or location of the data source
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:location
+    owner: DataSource
+    domain_of:
+    - DataSource
+    range: uri
+  credentials:
+    name: credentials
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/credentials
+    description: Authentication credentials for the data source
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:credentials
+    owner: DataSource
+    domain_of:
+    - DataSource
+    range: string
+  absolute:
+    name: absolute
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/absolute
+    description: Absolute coordinate positioning
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:absolute
+    owner: Coordinates
+    domain_of:
+    - Coordinates
+    range: AbsoluteCoordinates
+    inlined: true
+    inlined_as_list: true
+  representative:
+    name: representative
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/representative
+    description: Representative coordinate positioning
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:representative
+    owner: Coordinates
+    domain_of:
+    - Coordinates
+    range: AbsoluteCoordinates
+    inlined: true
+    inlined_as_list: true
+  coordinates:
+    name: coordinates
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/coordinates
+    description: Spatial coordinates of the feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:coordinates
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    range: Coordinates
+    inlined: true
+    inlined_as_list: true
+  horizontal_position:
+    name: horizontal_position
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/horizontal_position
+    description: Horizontal position information
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:horizontal_position
+    owner: AbsoluteCoordinates
+    domain_of:
+    - AbsoluteCoordinates
+    range: HorizontalPosition
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  vertical_extent:
+    name: vertical_extent
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/vertical_extent
+    description: Vertical extent information
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:vertical_extent
+    owner: AbsoluteCoordinates
+    domain_of:
+    - AbsoluteCoordinates
+    range: VerticalExtent
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  datum:
+    name: datum
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/datum
+    description: Geodetic or vertical datum
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:datum
+    owner: VerticalExtent
+    domain_of:
+    - HorizontalPosition
+    - VerticalExtent
+    range: string
+  coordinate_type:
+    name: coordinate_type
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/coordinate_type
+    description: Type of coordinate system
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:coordinate_type
+    owner: HorizontalPosition
+    domain_of:
+    - HorizontalPosition
+    range: CoordinateTypeEnum
+  units:
+    name: units
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/units
+    description: Units of measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:units
+    owner: HorizontalPosition
+    domain_of:
+    - HorizontalPosition
+    range: string
+  x_coordinate:
+    name: x_coordinate
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/x_coordinate
+    description: X coordinate (longitude for geographic)
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:x_coordinate
+    owner: HorizontalPosition
+    domain_of:
+    - HorizontalPosition
+    range: float
+  y_coordinate:
+    name: y_coordinate
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/y_coordinate
+    description: Y coordinate (latitude for geographic)
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:y_coordinate
+    owner: HorizontalPosition
+    domain_of:
+    - HorizontalPosition
+    range: float
+  distance_units:
+    name: distance_units
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/distance_units
+    description: Units for distance measurements
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:distance_units
+    owner: VerticalExtent
+    domain_of:
+    - VerticalExtent
+    range: string
+  encoding_method:
+    name: encoding_method
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/encoding_method
+    description: Method used for encoding the measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:encoding_method
+    owner: VerticalExtent
+    domain_of:
+    - VerticalExtent
+    range: string
+  resolution:
+    name: resolution
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/resolution
+    description: Resolution of the measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:resolution
+    owner: VerticalExtent
+    domain_of:
+    - VerticalExtent
+    range: float
+  vertical_extent_type:
+    name: vertical_extent_type
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/vertical_extent_type
+    description: Type of vertical extent measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:vertical_extent_type
+    owner: VerticalExtent
+    domain_of:
+    - VerticalExtent
+    range: VerticalExtentTypeEnum
+  value:
+    name: value
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/value
+    description: Numeric value of the measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:value
+    owner: TimeSeriesResult
+    domain_of:
+    - VerticalExtent
+    - TimeSeriesResult
+    range: float
+  aggregation_duration:
+    name: aggregation_duration
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/aggregation_duration
+    description: Duration over which data is aggregated
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:aggregation_duration
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: AggregationDurationEnum
+  datasource:
+    name: datasource
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/datasource
+    description: Data source for this observation
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:datasource
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - RelatedSamplingFeatureComplex
+    - ObservationMeasurementTimeSeries
+    range: DataSource
+  feature_of_interest:
+    name: feature_of_interest
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/feature_of_interest
+    description: The monitoring feature where the observation was made
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:feature_of_interest
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: MonitoringFeature
+    required: true
+  feature_of_interest_type:
+    name: feature_of_interest_type
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/feature_of_interest_type
+    description: Type of the feature of interest
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:feature_of_interest_type
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: FeatureTypeEnum
+  observed_property:
+    name: observed_property
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/observed_property
+    description: The phenomenon that was observed
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:observed_property
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: string
+  phenomenon_time:
+    name: phenomenon_time
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/phenomenon_time
+    description: Time when the phenomenon occurred
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:phenomenon_time
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: datetime
+  result:
+    name: result
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/result
+    description: Result of the observation measurement
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:result
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: TimeSeriesResult
+    inlined: true
+    inlined_as_list: true
+  result_quality:
+    name: result_quality
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/result_quality
+    description: Quality indicators for the result
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:result_quality
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - TimeSeriesResult
+    - ObservationMeasurementTimeSeries
+    range: string
+    multivalued: true
+  sampling_medium:
+    name: sampling_medium
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/sampling_medium
+    description: Medium in which the sampling occurred
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:sampling_medium
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: SamplingMediumEnum
+  statistic:
+    name: statistic
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/statistic
+    description: Statistical measure applied to the data
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:statistic
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: StatisticEnum
+  time_reference_position:
+    name: time_reference_position
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/time_reference_position
+    description: Position of time reference within aggregation period
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:time_reference_position
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: TimeReferencePositionEnum
+  observation_type:
+    name: observation_type
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/observation_type
+    description: Type of observation
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:observation_type
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: ObservationTypeEnum
+  unit_of_measurement:
+    name: unit_of_measurement
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/unit_of_measurement
+    description: Units of the measured values
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:unit_of_measurement
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - ObservationMeasurementTimeSeries
+    range: string
+  utc_offset:
+    name: utc_offset
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/utc_offset
+    description: UTC offset for time values
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:utc_offset
+    owner: ObservationMeasurementTimeSeries
+    domain_of:
+    - MonitoringFeature
+    - ObservationMeasurementTimeSeries
+    range: integer
+  description_reference:
+    name: description_reference
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/description_reference
+    description: Reference to additional description information
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:description_reference
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    range: string
+  feature_type:
+    name: feature_type
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/feature_type
+    description: Type of monitoring feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:feature_type
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    range: FeatureTypeEnum
+  original_id:
+    name: original_id
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/original_id
+    description: Original identifier from the data source
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:original_id
+    owner: MonitoringFeature
+    domain_of:
+    - RelatedSamplingFeatureComplex
+    - MonitoringFeature
+    range: string
+  related_sampling_feature_complex:
+    name: related_sampling_feature_complex
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/related_sampling_feature_complex
+    description: Complex relationships to other sampling features
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:related_sampling_feature_complex
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    range: RelatedSamplingFeatureComplex
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  shape:
+    name: shape
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/shape
+    description: Geometric shape of the feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:shape
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    range: ShapeEnum
+  related_sampling_feature:
+    name: related_sampling_feature
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/related_sampling_feature
+    description: Identifier of related sampling feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:related_sampling_feature
+    owner: RelatedSamplingFeatureComplex
+    domain_of:
+    - RelatedSamplingFeatureComplex
+    range: string
+  related_sampling_feature_type:
+    name: related_sampling_feature_type
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/related_sampling_feature_type
+    description: Type of related sampling feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:related_sampling_feature_type
+    owner: RelatedSamplingFeatureComplex
+    domain_of:
+    - RelatedSamplingFeatureComplex
+    range: string
+  role:
+    name: role
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/role
+    description: Role of the relationship
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:role
+    owner: RelatedSamplingFeatureComplex
+    domain_of:
+    - RelatedSamplingFeatureComplex
+    range: RelationshipRoleEnum
   primary_email:
     name: primary_email
     definition_uri: https://w3id.org/dschristianson/basin3dschema/primary_email
@@ -399,6 +1050,30 @@ slots:
     domain_of:
     - Person
     range: PersonStatus
+  monitoringFeatureCollection__monitoring_features:
+    name: monitoringFeatureCollection__monitoring_features
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:monitoring_features
+    alias: monitoring_features
+    owner: MonitoringFeatureCollection
+    domain_of:
+    - MonitoringFeatureCollection
+    range: MonitoringFeature
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  observationCollection__observations:
+    name: observationCollection__observations
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slot_uri: basin3dschema:observations
+    alias: observations
+    owner: ObservationCollection
+    domain_of:
+    - ObservationCollection
+    range: ObservationMeasurementTimeSeries
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   personCollection__people:
     name: personCollection__people
     from_schema: https://w3id.org/dschristianson/basin3dschema
@@ -411,6 +1086,59 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  MonitoringFeature_id:
+    name: MonitoringFeature_id
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/id
+    description: Unique identifier for the monitoring feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    mappings:
+    - schema:identifier
+    is_a: id
+    domain: MonitoringFeature
+    slot_uri: schema:identifier
+    identifier: true
+    alias: id
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+  MonitoringFeature_name:
+    name: MonitoringFeature_name
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/name
+    description: Human-readable name of the monitoring feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    mappings:
+    - schema:name
+    is_a: name
+    domain: MonitoringFeature
+    slot_uri: schema:name
+    alias: name
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    is_usage_slot: true
+    usage_slot_name: name
+    range: string
+  MonitoringFeature_description:
+    name: MonitoringFeature_description
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/description
+    description: Detailed description of the monitoring feature
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    mappings:
+    - schema:description
+    is_a: description
+    domain: MonitoringFeature
+    slot_uri: schema:description
+    alias: description
+    owner: MonitoringFeature
+    domain_of:
+    - MonitoringFeature
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
   Person_primary_email:
     name: Person_primary_email
     definition_uri: https://w3id.org/dschristianson/basin3dschema/primary_email
@@ -442,6 +1170,167 @@ classes:
     - name
     - description
     class_uri: schema:Thing
+  DataSource:
+    name: DataSource
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/DataSource
+    description: Represents a data source containing credentials, location, and identification
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - id
+    - name
+    - id_prefix
+    - location
+    - credentials
+    class_uri: basin3dschema:DataSource
+  Coordinates:
+    name: Coordinates
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/Coordinates
+    description: Spatial coordinates with absolute positioning information
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - absolute
+    - representative
+    class_uri: basin3dschema:Coordinates
+  AbsoluteCoordinates:
+    name: AbsoluteCoordinates
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/AbsoluteCoordinates
+    description: Absolute coordinate positioning with horizontal and vertical components
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - horizontal_position
+    - vertical_extent
+    class_uri: basin3dschema:AbsoluteCoordinates
+  HorizontalPosition:
+    name: HorizontalPosition
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/HorizontalPosition
+    description: Horizontal positioning information with datum, type, and coordinates
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - datum
+    - coordinate_type
+    - units
+    - x_coordinate
+    - y_coordinate
+    class_uri: basin3dschema:HorizontalPosition
+  VerticalExtent:
+    name: VerticalExtent
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/VerticalExtent
+    description: Vertical positioning information with datum, type, and elevation
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - datum
+    - distance_units
+    - encoding_method
+    - resolution
+    - vertical_extent_type
+    - value
+    class_uri: basin3dschema:VerticalExtent
+  RelatedSamplingFeatureComplex:
+    name: RelatedSamplingFeatureComplex
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/RelatedSamplingFeatureComplex
+    description: Complex relationship between sampling features
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - datasource
+    - datasource_ids
+    - id
+    - original_id
+    - related_sampling_feature
+    - related_sampling_feature_type
+    - role
+    class_uri: basin3dschema:RelatedSamplingFeatureComplex
+  TimeSeriesResult:
+    name: TimeSeriesResult
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/TimeSeriesResult
+    description: Time series result data containing values and quality information
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - result_quality
+    - value
+    class_uri: basin3dschema:TimeSeriesResult
+  MonitoringFeature:
+    name: MonitoringFeature
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/MonitoringFeature
+    description: A monitoring feature represents a real-world location where observations
+      are made. This corresponds to the feature_of_interest in observation data.
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    is_a: NamedThing
+    slots:
+    - coordinates
+    - description_reference
+    - feature_type
+    - original_id
+    - related_sampling_feature_complex
+    - shape
+    - utc_offset
+    - MonitoringFeature_id
+    - MonitoringFeature_name
+    - MonitoringFeature_description
+    slot_usage:
+      id:
+        name: id
+        description: Unique identifier for the monitoring feature
+        required: true
+      name:
+        name: name
+        description: Human-readable name of the monitoring feature
+      description:
+        name: description
+        description: Detailed description of the monitoring feature
+    class_uri: basin3dschema:MonitoringFeature
+  ObservationMeasurementTimeSeries:
+    name: ObservationMeasurementTimeSeries
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/ObservationMeasurementTimeSeries
+    description: Represents a time-series of measurement observations collected at
+      a monitoring feature. This is the main class for time-series observational data
+      in BASIN-3D.
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - aggregation_duration
+    - datasource
+    - feature_of_interest
+    - feature_of_interest_type
+    - observed_property
+    - phenomenon_time
+    - result
+    - result_quality
+    - sampling_medium
+    - statistic
+    - time_reference_position
+    - observation_type
+    - unit_of_measurement
+    - utc_offset
+    class_uri: basin3dschema:ObservationMeasurementTimeSeries
+  MonitoringFeatureCollection:
+    name: MonitoringFeatureCollection
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/MonitoringFeatureCollection
+    description: A collection of monitoring features
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - monitoringFeatureCollection__monitoring_features
+    attributes:
+      monitoring_features:
+        name: monitoring_features
+        range: MonitoringFeature
+        multivalued: true
+        inlined_as_list: true
+    class_uri: basin3dschema:MonitoringFeatureCollection
+    tree_root: true
+  ObservationCollection:
+    name: ObservationCollection
+    definition_uri: https://w3id.org/dschristianson/basin3dschema/ObservationCollection
+    description: A collection of observation measurement time series
+    from_schema: https://w3id.org/dschristianson/basin3dschema
+    slots:
+    - observationCollection__observations
+    attributes:
+      observations:
+        name: observations
+        range: ObservationMeasurementTimeSeries
+        multivalued: true
+        inlined_as_list: true
+    class_uri: basin3dschema:ObservationCollection
+    tree_root: true
   Person:
     name: Person
     definition_uri: https://w3id.org/dschristianson/basin3dschema/Person
@@ -478,7 +1367,7 @@ classes:
     tree_root: true
 metamodel_version: 1.7.0
 source_file: basin3dschema.yaml
-source_file_date: '2026-04-17T19:51:55'
-source_file_size: 2214
-generation_date: '2026-04-17T19:52:05'
+source_file_date: '2026-05-01T19:40:57'
+source_file_size: 13889
+generation_date: '2026-05-01T19:41:08'
 

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#basin3dschema" class="md-skip">
+        <a href="#basin-3d-schema-with-observationmeasurementtimeseries-and-monitoringfeature" class="md-skip">
           Skip to content
         </a>
       
@@ -546,8 +546,9 @@
   
 
 
-<h1 id="basin3dschema">basin3dschema</h1>
-<p>This is the project description.</p>
+<h1 id="basin-3d-schema-with-observationmeasurementtimeseries-and-monitoringfeature">BASIN-3D Schema with ObservationMeasurementTimeSeries and MonitoringFeature</h1>
+<p>Modified BASIN-3D schema including ObservationMeasurementTimeSeries and MonitoringFeature classes
+for representing time-series observational data and monitoring locations.</p>
 <p>URI: https://w3id.org/dschristianson/basin3dschema</p>
 <p>Name: basin3dschema</p>
 <h2 id="classes">Classes</h2>
@@ -560,16 +561,60 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="AbsoluteCoordinates/">AbsoluteCoordinates</a></td>
+<td>Absolute coordinate positioning with horizontal and vertical components</td>
+</tr>
+<tr>
+<td><a href="Coordinates/">Coordinates</a></td>
+<td>Spatial coordinates with absolute positioning information</td>
+</tr>
+<tr>
+<td><a href="DataSource/">DataSource</a></td>
+<td>Represents a data source containing credentials, location, and identification</td>
+</tr>
+<tr>
+<td><a href="HorizontalPosition/">HorizontalPosition</a></td>
+<td>Horizontal positioning information with datum, type, and coordinates</td>
+</tr>
+<tr>
+<td><a href="MonitoringFeatureCollection/">MonitoringFeatureCollection</a></td>
+<td>A collection of monitoring features</td>
+</tr>
+<tr>
 <td><a href="NamedThing/">NamedThing</a></td>
 <td>A generic grouping for any identifiable entity</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MonitoringFeature/">MonitoringFeature</a></td>
+<td>A monitoring feature represents a real-world location where observations are ...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Person/">Person</a></td>
 <td>Represents a Person</td>
 </tr>
 <tr>
+<td><a href="ObservationCollection/">ObservationCollection</a></td>
+<td>A collection of observation measurement time series</td>
+</tr>
+<tr>
+<td><a href="ObservationMeasurementTimeSeries/">ObservationMeasurementTimeSeries</a></td>
+<td>Represents a time-series of measurement observations collected at a monitorin...</td>
+</tr>
+<tr>
 <td><a href="PersonCollection/">PersonCollection</a></td>
 <td>A holder for Person objects</td>
+</tr>
+<tr>
+<td><a href="RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
+<td>Complex relationship between sampling features</td>
+</tr>
+<tr>
+<td><a href="TimeSeriesResult/">TimeSeriesResult</a></td>
+<td>Time series result data containing values and quality information</td>
+</tr>
+<tr>
+<td><a href="VerticalExtent/">VerticalExtent</a></td>
+<td>Vertical positioning information with datum, type, and elevation</td>
 </tr>
 </tbody>
 </table>
@@ -583,36 +628,208 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="absolute/">absolute</a></td>
+<td>Absolute coordinate positioning</td>
+</tr>
+<tr>
 <td><a href="age_in_years/">age_in_years</a></td>
 <td>Number of years since birth</td>
+</tr>
+<tr>
+<td><a href="aggregation_duration/">aggregation_duration</a></td>
+<td>Duration over which data is aggregated</td>
 </tr>
 <tr>
 <td><a href="birth_date/">birth_date</a></td>
 <td>Date on which a person is born</td>
 </tr>
 <tr>
+<td><a href="coordinate_type/">coordinate_type</a></td>
+<td>Type of coordinate system</td>
+</tr>
+<tr>
+<td><a href="coordinates/">coordinates</a></td>
+<td>Spatial coordinates of the feature</td>
+</tr>
+<tr>
+<td><a href="credentials/">credentials</a></td>
+<td>Authentication credentials for the data source</td>
+</tr>
+<tr>
+<td><a href="datasource/">datasource</a></td>
+<td>Data source for this observation</td>
+</tr>
+<tr>
+<td><a href="datasource_ids/">datasource_ids</a></td>
+<td>Data source identifiers</td>
+</tr>
+<tr>
+<td><a href="datum/">datum</a></td>
+<td>Geodetic or vertical datum</td>
+</tr>
+<tr>
 <td><a href="description/">description</a></td>
 <td>A human-readable description for a thing</td>
+</tr>
+<tr>
+<td><a href="description_reference/">description_reference</a></td>
+<td>Reference to additional description information</td>
+</tr>
+<tr>
+<td><a href="distance_units/">distance_units</a></td>
+<td>Units for distance measurements</td>
+</tr>
+<tr>
+<td><a href="encoding_method/">encoding_method</a></td>
+<td>Method used for encoding the measurement</td>
+</tr>
+<tr>
+<td><a href="feature_of_interest/">feature_of_interest</a></td>
+<td>The monitoring feature where the observation was made</td>
+</tr>
+<tr>
+<td><a href="feature_of_interest_type/">feature_of_interest_type</a></td>
+<td>Type of the feature of interest</td>
+</tr>
+<tr>
+<td><a href="feature_type/">feature_type</a></td>
+<td>Type of monitoring feature</td>
+</tr>
+<tr>
+<td><a href="horizontal_position/">horizontal_position</a></td>
+<td>Horizontal position information</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
 <td>A unique identifier for a thing</td>
 </tr>
 <tr>
+<td><a href="id_prefix/">id_prefix</a></td>
+<td>Prefix used for identifiers from this data source</td>
+</tr>
+<tr>
+<td><a href="location/">location</a></td>
+<td>URL or location of the data source</td>
+</tr>
+<tr>
+<td><a href="monitoring_features/">monitoring_features</a></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for a thing</td>
+</tr>
+<tr>
+<td><a href="observation_type/">observation_type</a></td>
+<td>Type of observation</td>
+</tr>
+<tr>
+<td><a href="observations/">observations</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="observed_property/">observed_property</a></td>
+<td>The phenomenon that was observed</td>
+</tr>
+<tr>
+<td><a href="original_id/">original_id</a></td>
+<td>Original identifier from the data source</td>
 </tr>
 <tr>
 <td><a href="people/">people</a></td>
 <td></td>
 </tr>
 <tr>
+<td><a href="phenomenon_time/">phenomenon_time</a></td>
+<td>Time when the phenomenon occurred</td>
+</tr>
+<tr>
 <td><a href="primary_email/">primary_email</a></td>
 <td>The main email address of a person</td>
 </tr>
 <tr>
+<td><a href="related_sampling_feature/">related_sampling_feature</a></td>
+<td>Identifier of related sampling feature</td>
+</tr>
+<tr>
+<td><a href="related_sampling_feature_complex/">related_sampling_feature_complex</a></td>
+<td>Complex relationships to other sampling features</td>
+</tr>
+<tr>
+<td><a href="related_sampling_feature_type/">related_sampling_feature_type</a></td>
+<td>Type of related sampling feature</td>
+</tr>
+<tr>
+<td><a href="representative/">representative</a></td>
+<td>Representative coordinate positioning</td>
+</tr>
+<tr>
+<td><a href="resolution/">resolution</a></td>
+<td>Resolution of the measurement</td>
+</tr>
+<tr>
+<td><a href="result/">result</a></td>
+<td>Result of the observation measurement</td>
+</tr>
+<tr>
+<td><a href="result_quality/">result_quality</a></td>
+<td>Quality indicators for the result</td>
+</tr>
+<tr>
+<td><a href="role/">role</a></td>
+<td>Role of the relationship</td>
+</tr>
+<tr>
+<td><a href="sampling_medium/">sampling_medium</a></td>
+<td>Medium in which the sampling occurred</td>
+</tr>
+<tr>
+<td><a href="shape/">shape</a></td>
+<td>Geometric shape of the feature</td>
+</tr>
+<tr>
+<td><a href="statistic/">statistic</a></td>
+<td>Statistical measure applied to the data</td>
+</tr>
+<tr>
+<td><a href="time_reference_position/">time_reference_position</a></td>
+<td>Position of time reference within aggregation period</td>
+</tr>
+<tr>
+<td><a href="unit_of_measurement/">unit_of_measurement</a></td>
+<td>Units of the measured values</td>
+</tr>
+<tr>
+<td><a href="units/">units</a></td>
+<td>Units of measurement</td>
+</tr>
+<tr>
+<td><a href="utc_offset/">utc_offset</a></td>
+<td>UTC offset for time values</td>
+</tr>
+<tr>
+<td><a href="value/">value</a></td>
+<td>Numeric value of the measurement</td>
+</tr>
+<tr>
+<td><a href="vertical_extent/">vertical_extent</a></td>
+<td>Vertical extent information</td>
+</tr>
+<tr>
+<td><a href="vertical_extent_type/">vertical_extent_type</a></td>
+<td>Type of vertical extent measurement</td>
+</tr>
+<tr>
 <td><a href="vital_status/">vital_status</a></td>
 <td>living or dead status</td>
+</tr>
+<tr>
+<td><a href="x_coordinate/">x_coordinate</a></td>
+<td>X coordinate (longitude for geographic)</td>
+</tr>
+<tr>
+<td><a href="y_coordinate/">y_coordinate</a></td>
+<td>Y coordinate (latitude for geographic)</td>
 </tr>
 </tbody>
 </table>
@@ -626,8 +843,52 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="AggregationDurationEnum/">AggregationDurationEnum</a></td>
+<td>Duration over which observations are aggregated</td>
+</tr>
+<tr>
+<td><a href="CoordinateTypeEnum/">CoordinateTypeEnum</a></td>
+<td>Type of coordinate system</td>
+</tr>
+<tr>
+<td><a href="FeatureTypeEnum/">FeatureTypeEnum</a></td>
+<td>Type of monitoring or sampling feature</td>
+</tr>
+<tr>
+<td><a href="ObservationTypeEnum/">ObservationTypeEnum</a></td>
+<td>Type of observation measurement</td>
+</tr>
+<tr>
 <td><a href="PersonStatus/">PersonStatus</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="RelationshipRoleEnum/">RelationshipRoleEnum</a></td>
+<td>Role in sampling feature relationships</td>
+</tr>
+<tr>
+<td><a href="ResultQualityEnum/">ResultQualityEnum</a></td>
+<td>Quality code for the result</td>
+</tr>
+<tr>
+<td><a href="SamplingMediumEnum/">SamplingMediumEnum</a></td>
+<td>Medium in which sampling occurred</td>
+</tr>
+<tr>
+<td><a href="ShapeEnum/">ShapeEnum</a></td>
+<td>Geometric shape of features</td>
+</tr>
+<tr>
+<td><a href="StatisticEnum/">StatisticEnum</a></td>
+<td>Statistical measures</td>
+</tr>
+<tr>
+<td><a href="TimeReferencePositionEnum/">TimeReferencePositionEnum</a></td>
+<td>Position of time reference within aggregation period</td>
+</tr>
+<tr>
+<td><a href="VerticalExtentTypeEnum/">VerticalExtentTypeEnum</a></td>
+<td>Type of vertical extent measurement</td>
 </tr>
 </tbody>
 </table>

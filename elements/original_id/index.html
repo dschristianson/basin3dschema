@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://dschristianson.github.io/basin3dschema/elements/PersonStatus/">
+        <link rel="canonical" href="https://dschristianson.github.io/basin3dschema/elements/original_id/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Enum: PersonStatus - basin3dschema</title>
+        <title>Slot: original_id - basin3dschema</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-personstatus" class="md-skip">
+        <a href="#slot-original_id" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: PersonStatus
+              Slot: original_id
             
           </span>
         </div>
@@ -365,10 +365,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Permissible Values
+        Applicable Classes
       
     </span>
   </a>
@@ -376,13 +376,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
+  <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Slots
+        Properties
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardinality-and-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cardinality and Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -411,6 +439,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+  </a>
   
 </li>
       
@@ -446,47 +485,66 @@
   
 
 
-<h1 id="enum-personstatus">Enum: PersonStatus</h1>
-<p>URI: <a href="https://w3id.org/dschristianson/basin3dschema/PersonStatus">basin3dschema:PersonStatus</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ALIVE</td>
-<td>PATO:0001421</td>
-<td>the person is living</td>
-</tr>
-<tr>
-<td>DEAD</td>
-<td>PATO:0001422</td>
-<td>the person is deceased</td>
-</tr>
-<tr>
-<td>UNKNOWN</td>
-<td>None</td>
-<td>the vital status is not known</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<h1 id="slot-original_id">Slot: original_id</h1>
+<p><em>Original identifier from the data source</em></p>
+<p>URI: <a href="https://w3id.org/dschristianson/basin3dschema/original_id">basin3dschema:original_id</a>
+Alias: original_id</p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../vital_status/">vital_status</a></td>
-<td>living or dead status</td>
+<td><a href="../RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
+<td>Complex relationship between sampling features</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
+<td>A monitoring feature represents a real-world location where observations are ...</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties">Properties</h2>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../String/">String</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a>, <a href="../MonitoringFeature/">MonitoringFeature</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="cardinality-and-requirements">Cardinality and Requirements</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -495,25 +553,36 @@
 <ul>
 <li>from schema: https://w3id.org/dschristianson/basin3dschema</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>basin3dschema:original_id</td>
+</tr>
+<tr>
+<td>native</td>
+<td>basin3dschema:original_id</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersonStatus</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">original_id</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Original identifier from the data source</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/dschristianson/basin3dschema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ALIVE</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALIVE</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the person is living</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PATO:0001421</span>
-<span class="w">  </span><span class="nt">DEAD</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEAD</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the person is deceased</span>
-<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PATO:0001422</span>
-<span class="w">  </span><span class="nt">UNKNOWN</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNKNOWN</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">the vital status is not known</span>
-<span class="w">    </span><span class="nt">todos</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">map this to an ontology</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">original_id</span>
+<span class="nt">domain_of</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RelatedSamplingFeatureComplex</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MonitoringFeature</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
 
