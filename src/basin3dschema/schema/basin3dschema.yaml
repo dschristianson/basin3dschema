@@ -26,17 +26,6 @@ imports:
 
 classes:
 
-  NamedThing:
-    description: >-
-      A generic grouping for any identifiable entity
-    slots:
-      - id
-      - name
-      - description
-    class_uri: schema:Thing
-
-  # BASIN-3D Core Classes
-
   DataSource:
     description: >-
       Represents a data source containing credentials, location, and identification
@@ -47,21 +36,64 @@ classes:
       - location
       - credentials
 
-  Coordinates:
+  ObservedProperty:
+    slots:
+      - basin3d_vocab
+      - full_name
+      - categories
+      - units
+
+  AttributeMapping:
+    slots:
+      - attr_type
+      - basin3d_vocab
+      - basin3d_desc
+      - datasource_vocab
+      - datasource_desc
+      - datasource
+
+  MappedAttribute:
+    slots:
+      - attr_type
+      - attr_mapping
+    slot_usage:
+      attr_type:
+        range: MappedAttributeEnum
+      attr_mapping:
+        range: AttributeMapping
+
+  Base:
+    description: >-
+      Base class for object to synthesize
+    slots:
+      - id
+      - original_id
+      - datasource
+      - datasource_ids
+
+  Coordinate:
     description: >-
       Spatial coordinates with absolute positioning information
     slots:
       - absolute
       - representative
 
-  AbsoluteCoordinates:
+  AbsoluteCoordinate:
     description: >-
       Absolute coordinate positioning with horizontal and vertical components
     slots:
       - horizontal_position
       - vertical_extent
 
-  HorizontalPosition:
+  RepresentativeCoordinate:
+    description: >-
+      Representative coordinates describe the location of a feature by a representative shape / location.
+    slots:
+      - representative_point
+      - representative_point_type
+      - vertical_position
+
+  HorizontalCoordinate:
     description: >-
       Horizontal positioning information with datum, type, and coordinates
     slots:
@@ -71,7 +103,7 @@ classes:
       - x_coordinate
       - y_coordinate
 
-  VerticalExtent:
+  VerticalCoordinate:
     description: >-
       Vertical positioning information with datum, type, and elevation
     slots:
@@ -82,14 +114,20 @@ classes:
       - vertical_extent_type
       - value
 
+  DepthCoordinate:
+    description: >-
+      A depth vertical position (i.e., the height or depth from the specified reference position)
+    slots:
+      - datum
+    slot_usage:
+      datum:
+        range: VerticalPositionDatumEnum
+
   RelatedSamplingFeatureComplex:
+    is_a: Base
     description: >-
       Complex relationship between sampling features
     slots:
-      - datasource
-      - datasource_ids
-      - id
-      - original_id
       - related_sampling_feature
       - related_sampling_feature_type
       - role
@@ -101,18 +139,42 @@ classes:
       - result_quality
       - value
 
-  MonitoringFeature:
-    is_a: NamedThing
+  Feature:
+    is_a: Base
     description: >-
-      A monitoring feature represents a real-world location where observations are made.
-      This corresponds to the feature_of_interest in observation data.
+      A general feature upon which an observation can be made.
+      Loosely after GF_Feature (ISO).
     slots:
-      - coordinates
-      - description_reference
+      - name
+      - description
       - feature_type
-      - original_id
+      - observed_properties
+
+  SamplingFeature:
+    is_a: Feature
+    description: >-
+      A feature where sampling is conducted.
+      OGC Observation & Measurements SF_SamplingFeature.
+    slots:
       - related_sampling_feature_complex
+
+  SpatialSamplingFeature:
+    is_a: SamplingFeature
+    description: >-
+      A spatially-defined feature where sampling is conducted.
+      OGC Observation & Measurements SF_SpatialSamplingFeature.
+    slots:
       - shape
+      - coordinates
+
+  MonitoringFeature:
+    is_a: SpatialSamplingFeature
+    description: >-
+      A feature upon which monitoring is made.
+      OGC Timeseries Profile OM_MonitoringFeature.
+    slots:
+      - description_reference
+      - related_party
       - utc_offset
     slot_usage:
       id:
@@ -123,70 +185,110 @@ classes:
       description:
         description: Detailed description of the monitoring feature
 
+  RelatedSamplingFeature:
+    is_a: Base
+    description: >-
+      Class that represents a related sampling feature and its role relative to
+      the sampling feature to which it is related. Spatial hierarchies of features
+      are built by specifying related sampling features.
+      Data model from OGC Observations and Measurements.
+    slots:
+      - related_sampling_feature
+      - related_sampling_feature_type
+      - role
+    slot_usage:
+      role:
+        description: relationship role
+        range: RelationshipRoleEnum
+
+  TimeValuePair:
+    description: a time value pair
+    slots:
+      - timestamp
+      - value
+
+  Observation:
+    is_a: Base
+    description: >-
+      OGC OM_Observation feature type. This is a parent class to which Mixins
+      should be added to create observation types with metadata and result.
+    slots:
+      - type
+      - utc_offset
+      - phenomenon_time
+      - observed_property
+      - feature_of_interest
+      - feature_of_interest_type
+      - result_quality
+
+  TimeMetadata:
+    mixin: true
+    slots:
+      - aggregation_duration
+      - time_reference_position
+
+  MeasurementMetadata:
+    mixin: true
+    slots:
+      - sampling_medium
+      - statistic
+
+  ResultPointFloat:
+    slots:
+      - value
+      - result_quality
+
+  MeasurementResult:
+    mixin: true
+    slots:
+      - result
+      - unit_of_measurement
+    slot_usage:
+      result:
+        range: ResultPointFloat
+
+  # Needs some work to understand arrays:
+  #   The result is an array of TimeValuePairs
+  ResultListTVP:
+    slots:
+      - value
+      - result_quality
+
+  MeasurementTimeseriesTVPResult:
+    mixin: true
+    slots:
+      - result
+      - unit_of_measurement
+    slot_usage:
+      result:
+        range: ResultListTVP
+
   ObservationMeasurementTimeSeries:
+    is_a: Observation
+    mixins:
+      - TimeMetadata
+      - MeasurementMetadata
+      - MeasurementTimeseriesTVPResult
     description: >-
       Represents a time-series of measurement observations collected at a monitoring feature.
       This is the main class for time-series observational data in BASIN-3D.
-    slots:
-      - aggregation_duration
-      - datasource
-      - feature_of_interest
-      - feature_of_interest_type
-      - observed_property
-      - phenomenon_time
-      - result
-      - result_quality
-      - sampling_medium
-      - statistic
-      - time_reference_position
-      - observation_type
-      - unit_of_measurement
-      - utc_offset
 
-  # Collection classes
-  MonitoringFeatureCollection:
-    tree_root: true
-    description: >-
-      A collection of monitoring features
-    attributes:
-      monitoring_features:
-        range: MonitoringFeature
-        multivalued: true
-        inlined_as_list: true
 
-  ObservationCollection:
-    tree_root: true
-    description: >-
-      A collection of observation measurement time series
-    attributes:
-      observations:
-        range: ObservationMeasurementTimeSeries
-        multivalued: true
-        inlined_as_list: true
-
-  # Original classes from base schema
   Person:
-    is_a: NamedThing
+    is_a: Base
     description: >-
       Represents a Person
     slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
+      - first_name
+      - last_name
+      - email
+      - institution
+      - role
     slot_usage:
-      primary_email:
+      email:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
-
-  PersonCollection:
-    tree_root: true
-    description: >-
-      A holder for Person objects
-    attributes:
-      people:
-        range: Person
-        multivalued: true
-        inlined_as_list: true
+      role:
+        description: research role
 
 slots:
   # Base slots
@@ -195,16 +297,54 @@ slots:
     slot_uri: schema:identifier
     range: uriorcurie
     description: A unique identifier for a thing
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
+  datasource:
+    description: Data source for this observation
+    range: DataSource
 
+  # Person slots
+  first_name:
+    description: First name for a person
+  last_name:
+    description: Last name for a person
+  institution:
+    description: more here
+  email:
+    slot_uri: schema:email
+    description: The main email address of a person
+
+  name:
+    description: Human readable name
+    range: string
   datasource_ids:
     description: Data source identifiers
     multivalued: true
+  description:
+    description: more detailed explanation of the feature
+    range: string
+  observed_properties:
+    description: a list of observed properties on the feature
+  related_party:
+    description: >-
+      list of Person, people or organizations responsible for Feature
+
+  basin3d_vocab:
+    description: common vocabulary for basin3d
+  full_name:
+    description: full name of the observed property
+  categories:
+    description: category of observed property
+
+  attr_type:
+    description: mapped attribute type
+  basin3d_desc:
+    description: The BASIN-3D vocabulary description
+  datasource_vocab:
+    description: The datasource vocabulary term
+  datasource_desc:
+    description: The datasource vocabulary description
+
+  attr_mapping:
+    description: vocabulary mapping between Basin3D and datasource
 
   # DataSource slots
   id_prefix:
@@ -219,22 +359,22 @@ slots:
   # Coordinate slots
   absolute:
     description: Absolute coordinate positioning
-    range: AbsoluteCoordinates
+    range: AbsoluteCoordinate
   representative:
     description: Representative coordinate positioning
-    range: AbsoluteCoordinates
+    range: RepresentativeCoordinate
   coordinates:
     description: Spatial coordinates of the feature
-    range: Coordinates
+    range: Coordinate
 
   horizontal_position:
     description: Horizontal position information
-    range: HorizontalPosition
+    range: HorizontalCoordinate
     multivalued: true
     inlined_as_list: true
   vertical_extent:
     description: Vertical extent information
-    range: VerticalExtent
+    range: VerticalCoordinate
     multivalued: true
     inlined_as_list: true
 
@@ -262,17 +402,29 @@ slots:
   vertical_extent_type:
     description: Type of vertical extent measurement
     range: VerticalExtentTypeEnum
+  representative_point:
+    description: A point representation of the feature.
+    range: AbsoluteCoordinate
+  representative_point_type:
+    description: The type of representative point relative to the feature's geometry
+    range: RepresentativePointTypeEnum
+  vertical_position:
+    description: The vertical position of the feature from a reference position (e.g., height or depth)
+    range: DepthCoordinate
+
   value:
     description: Numeric value of the measurement
     range: float
+  timestamp:
+    description: timestamp of the observation in the result
 
   # Observation slots
+  type:
+    description: type of observation
+    range: ObservationTypeEnum
   aggregation_duration:
     description: Duration over which data is aggregated
     range: AggregationDurationEnum
-  datasource:
-    description: Data source for this observation
-    range: DataSource
   feature_of_interest:
     description: The monitoring feature where the observation was made
     range: MonitoringFeature
@@ -300,9 +452,6 @@ slots:
   time_reference_position:
     description: Position of time reference within aggregation period
     range: TimeReferencePositionEnum
-  observation_type:
-    description: Type of observation
-    range: ObservationTypeEnum
   unit_of_measurement:
     description: Units of the measured values
   utc_offset:
@@ -332,26 +481,23 @@ slots:
   related_sampling_feature_type:
     description: Type of related sampling feature
   role:
-    description: Role of the relationship
-    range: RelationshipRoleEnum
-
-  # Original Person slots
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+    description: Role
 
 enums:
   # Enums for BASIN-3D classes
+  MappedAttributeEnum:
+    permissible_values:
+      OBSERVED_PROPERTY:
+        description: more here
+      AGGREGATION_DURATION:
+        description: more here
+      RESULT_QUALITY:
+        description: more here
+      SAMPLING_MEDIUM:
+        description: more here
+      STATISTIC:
+        description: more here
+
   AggregationDurationEnum:
     description: Duration over which observations are aggregated
     permissible_values:
@@ -375,6 +521,28 @@ enums:
         description: Projected coordinate system
       LOCAL:
         description: Local coordinate system
+
+  RepresentativePointTypeEnum:
+    description: position of the representative point
+    permissible_values:
+      REPRESENTATIVE_POINT_TYPE_CENTER_LOCAL_SURFACE:
+        description: Placement of the representative point is the center of a local surface
+      REPRESENTATIVE_POINT_TYPE_UPPER_LEFT_CORNER:
+        description: Placement of the representative point is the upper left corner (northwest)
+      REPRESENTATIVE_POINT_TYPE_UPPER_RIGHT_CORNER:
+        description: Placement of the representative point is the upper right corner (northeast)
+      REPRESENTATIVE_POINT_TYPE_LOWER_LEFT_CORNER:
+        description: Placement of the representative point is the lower left corner (southhwest)
+      REPRESENTATIVE_POINT_TYPE_LOWER_RIGHT_CORNER:
+        description: Placement of the representative point is the lower right corner (northeast)
+
+  VerticalPositionDatumEnum:
+    description: references for vertical position
+    permissible_values:
+      DATUM_LOCAL_SURFACE:
+        description: local surface
+      DATUM_MEAN_SEA_LEVEL:
+        description: mean sea level
 
   FeatureTypeEnum:
     description: Type of monitoring or sampling feature
@@ -467,8 +635,6 @@ enums:
     permissible_values:
       PARENT:
         description: Parent relationship
-      CHILD:
-        description: Child relationship
 
   ResultQualityEnum:
     description: Quality code for the result
@@ -485,17 +651,3 @@ enums:
         description: The result is estimated. Synonyms Interpolated, Modeled.
       NOT_SUPPORTED:
         description: not supported
-
-  # Original enum
-  PersonStatus:
-    permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
