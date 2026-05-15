@@ -561,11 +561,55 @@ for representing time-series observational data and monitoring locations.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="AbsoluteCoordinates/">AbsoluteCoordinates</a></td>
+<td><a href="AbsoluteCoordinate/">AbsoluteCoordinate</a></td>
 <td>Absolute coordinate positioning with horizontal and vertical components</td>
 </tr>
 <tr>
-<td><a href="Coordinates/">Coordinates</a></td>
+<td><a href="AttributeMapping/">AttributeMapping</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="Base/">Base</a></td>
+<td>Base class for object to synthesize</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Feature/">Feature</a></td>
+<td>A general feature upon which an observation can be made</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SamplingFeature/">SamplingFeature</a></td>
+<td>A feature where sampling is conducted</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SpatialSamplingFeature/">SpatialSamplingFeature</a></td>
+<td>A spatially-defined feature where sampling is conducted</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MonitoringFeature/">MonitoringFeature</a></td>
+<td>A feature upon which monitoring is made</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Observation/">Observation</a></td>
+<td>OGC OM_Observation feature type</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservationMeasurementTimeSeries/">ObservationMeasurementTimeSeries</a></td>
+<td>Represents a time-series of measurement observations collected at a monitorin...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Person/">Person</a></td>
+<td>Represents a Person</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="RelatedSamplingFeature/">RelatedSamplingFeature</a></td>
+<td>Class that represents a related sampling feature and its role relative to the...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
+<td>Complex relationship between sampling features</td>
+</tr>
+<tr>
+<td><a href="Coordinate/">Coordinate</a></td>
 <td>Spatial coordinates with absolute positioning information</td>
 </tr>
 <tr>
@@ -573,47 +617,59 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Represents a data source containing credentials, location, and identification</td>
 </tr>
 <tr>
-<td><a href="HorizontalPosition/">HorizontalPosition</a></td>
+<td><a href="DepthCoordinate/">DepthCoordinate</a></td>
+<td>A depth vertical position (i</td>
+</tr>
+<tr>
+<td><a href="HorizontalCoordinate/">HorizontalCoordinate</a></td>
 <td>Horizontal positioning information with datum, type, and coordinates</td>
 </tr>
 <tr>
-<td><a href="MonitoringFeatureCollection/">MonitoringFeatureCollection</a></td>
-<td>A collection of monitoring features</td>
+<td><a href="MappedAttribute/">MappedAttribute</a></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td><a href="MeasurementMetadata/">MeasurementMetadata</a></td>
+<td></td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MonitoringFeature/">MonitoringFeature</a></td>
-<td>A monitoring feature represents a real-world location where observations are ...</td>
+<td><a href="MeasurementResult/">MeasurementResult</a></td>
+<td></td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Person/">Person</a></td>
-<td>Represents a Person</td>
+<td><a href="MeasurementTimeseriesTVPResult/">MeasurementTimeseriesTVPResult</a></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="ObservationCollection/">ObservationCollection</a></td>
-<td>A collection of observation measurement time series</td>
+<td><a href="ObservedProperty/">ObservedProperty</a></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="ObservationMeasurementTimeSeries/">ObservationMeasurementTimeSeries</a></td>
-<td>Represents a time-series of measurement observations collected at a monitorin...</td>
+<td><a href="RepresentativeCoordinate/">RepresentativeCoordinate</a></td>
+<td>Representative coordinates describe the location of a feature by a representa...</td>
 </tr>
 <tr>
-<td><a href="PersonCollection/">PersonCollection</a></td>
-<td>A holder for Person objects</td>
+<td><a href="ResultListTVP/">ResultListTVP</a></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
-<td>Complex relationship between sampling features</td>
+<td><a href="ResultPointFloat/">ResultPointFloat</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="TimeMetadata/">TimeMetadata</a></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="TimeSeriesResult/">TimeSeriesResult</a></td>
 <td>Time series result data containing values and quality information</td>
 </tr>
 <tr>
-<td><a href="VerticalExtent/">VerticalExtent</a></td>
+<td><a href="TimeValuePair/">TimeValuePair</a></td>
+<td>a time value pair</td>
+</tr>
+<tr>
+<td><a href="VerticalCoordinate/">VerticalCoordinate</a></td>
 <td>Vertical positioning information with datum, type, and elevation</td>
 </tr>
 </tbody>
@@ -632,16 +688,28 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Absolute coordinate positioning</td>
 </tr>
 <tr>
-<td><a href="age_in_years/">age_in_years</a></td>
-<td>Number of years since birth</td>
-</tr>
-<tr>
 <td><a href="aggregation_duration/">aggregation_duration</a></td>
 <td>Duration over which data is aggregated</td>
 </tr>
 <tr>
-<td><a href="birth_date/">birth_date</a></td>
-<td>Date on which a person is born</td>
+<td><a href="attr_mapping/">attr_mapping</a></td>
+<td>vocabulary mapping between Basin3D and datasource</td>
+</tr>
+<tr>
+<td><a href="attr_type/">attr_type</a></td>
+<td>mapped attribute type</td>
+</tr>
+<tr>
+<td><a href="basin3d_desc/">basin3d_desc</a></td>
+<td>The BASIN-3D vocabulary description</td>
+</tr>
+<tr>
+<td><a href="basin3d_vocab/">basin3d_vocab</a></td>
+<td>common vocabulary for basin3d</td>
+</tr>
+<tr>
+<td><a href="categories/">categories</a></td>
+<td>category of observed property</td>
 </tr>
 <tr>
 <td><a href="coordinate_type/">coordinate_type</a></td>
@@ -660,8 +728,16 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Data source for this observation</td>
 </tr>
 <tr>
+<td><a href="datasource_desc/">datasource_desc</a></td>
+<td>The datasource vocabulary description</td>
+</tr>
+<tr>
 <td><a href="datasource_ids/">datasource_ids</a></td>
 <td>Data source identifiers</td>
+</tr>
+<tr>
+<td><a href="datasource_vocab/">datasource_vocab</a></td>
+<td>The datasource vocabulary term</td>
 </tr>
 <tr>
 <td><a href="datum/">datum</a></td>
@@ -669,7 +745,7 @@ for representing time-series observational data and monitoring locations.</p>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
-<td>A human-readable description for a thing</td>
+<td>more detailed explanation of the feature</td>
 </tr>
 <tr>
 <td><a href="description_reference/">description_reference</a></td>
@@ -678,6 +754,10 @@ for representing time-series observational data and monitoring locations.</p>
 <tr>
 <td><a href="distance_units/">distance_units</a></td>
 <td>Units for distance measurements</td>
+</tr>
+<tr>
+<td><a href="email/">email</a></td>
+<td>The main email address of a person</td>
 </tr>
 <tr>
 <td><a href="encoding_method/">encoding_method</a></td>
@@ -696,6 +776,14 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Type of monitoring feature</td>
 </tr>
 <tr>
+<td><a href="first_name/">first_name</a></td>
+<td>First name for a person</td>
+</tr>
+<tr>
+<td><a href="full_name/">full_name</a></td>
+<td>full name of the observed property</td>
+</tr>
+<tr>
 <td><a href="horizontal_position/">horizontal_position</a></td>
 <td>Horizontal position information</td>
 </tr>
@@ -708,24 +796,24 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Prefix used for identifiers from this data source</td>
 </tr>
 <tr>
+<td><a href="institution/">institution</a></td>
+<td>more here</td>
+</tr>
+<tr>
+<td><a href="last_name/">last_name</a></td>
+<td>Last name for a person</td>
+</tr>
+<tr>
 <td><a href="location/">location</a></td>
 <td>URL or location of the data source</td>
 </tr>
 <tr>
-<td><a href="monitoring_features/">monitoring_features</a></td>
-<td></td>
-</tr>
-<tr>
 <td><a href="name/">name</a></td>
-<td>A human-readable name for a thing</td>
+<td>Human readable name</td>
 </tr>
 <tr>
-<td><a href="observation_type/">observation_type</a></td>
-<td>Type of observation</td>
-</tr>
-<tr>
-<td><a href="observations/">observations</a></td>
-<td></td>
+<td><a href="observed_properties/">observed_properties</a></td>
+<td>a list of observed properties on the feature</td>
 </tr>
 <tr>
 <td><a href="observed_property/">observed_property</a></td>
@@ -736,16 +824,12 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Original identifier from the data source</td>
 </tr>
 <tr>
-<td><a href="people/">people</a></td>
-<td></td>
-</tr>
-<tr>
 <td><a href="phenomenon_time/">phenomenon_time</a></td>
 <td>Time when the phenomenon occurred</td>
 </tr>
 <tr>
-<td><a href="primary_email/">primary_email</a></td>
-<td>The main email address of a person</td>
+<td><a href="related_party/">related_party</a></td>
+<td>list of Person, people or organizations responsible for Feature</td>
 </tr>
 <tr>
 <td><a href="related_sampling_feature/">related_sampling_feature</a></td>
@@ -764,6 +848,14 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Representative coordinate positioning</td>
 </tr>
 <tr>
+<td><a href="representative_point/">representative_point</a></td>
+<td>A point representation of the feature</td>
+</tr>
+<tr>
+<td><a href="representative_point_type/">representative_point_type</a></td>
+<td>The type of representative point relative to the feature's geometry</td>
+</tr>
+<tr>
 <td><a href="resolution/">resolution</a></td>
 <td>Resolution of the measurement</td>
 </tr>
@@ -777,7 +869,7 @@ for representing time-series observational data and monitoring locations.</p>
 </tr>
 <tr>
 <td><a href="role/">role</a></td>
-<td>Role of the relationship</td>
+<td>Role</td>
 </tr>
 <tr>
 <td><a href="sampling_medium/">sampling_medium</a></td>
@@ -794,6 +886,14 @@ for representing time-series observational data and monitoring locations.</p>
 <tr>
 <td><a href="time_reference_position/">time_reference_position</a></td>
 <td>Position of time reference within aggregation period</td>
+</tr>
+<tr>
+<td><a href="timestamp/">timestamp</a></td>
+<td>timestamp of the observation in the result</td>
+</tr>
+<tr>
+<td><a href="type/">type</a></td>
+<td>type of observation</td>
 </tr>
 <tr>
 <td><a href="unit_of_measurement/">unit_of_measurement</a></td>
@@ -820,8 +920,8 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Type of vertical extent measurement</td>
 </tr>
 <tr>
-<td><a href="vital_status/">vital_status</a></td>
-<td>living or dead status</td>
+<td><a href="vertical_position/">vertical_position</a></td>
+<td>The vertical position of the feature from a reference position (e</td>
 </tr>
 <tr>
 <td><a href="x_coordinate/">x_coordinate</a></td>
@@ -855,16 +955,20 @@ for representing time-series observational data and monitoring locations.</p>
 <td>Type of monitoring or sampling feature</td>
 </tr>
 <tr>
+<td><a href="MappedAttributeEnum/">MappedAttributeEnum</a></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="ObservationTypeEnum/">ObservationTypeEnum</a></td>
 <td>Type of observation measurement</td>
 </tr>
 <tr>
-<td><a href="PersonStatus/">PersonStatus</a></td>
-<td></td>
-</tr>
-<tr>
 <td><a href="RelationshipRoleEnum/">RelationshipRoleEnum</a></td>
 <td>Role in sampling feature relationships</td>
+</tr>
+<tr>
+<td><a href="RepresentativePointTypeEnum/">RepresentativePointTypeEnum</a></td>
+<td>position of the representative point</td>
 </tr>
 <tr>
 <td><a href="ResultQualityEnum/">ResultQualityEnum</a></td>
@@ -889,6 +993,10 @@ for representing time-series observational data and monitoring locations.</p>
 <tr>
 <td><a href="VerticalExtentTypeEnum/">VerticalExtentTypeEnum</a></td>
 <td>Type of vertical extent measurement</td>
+</tr>
+<tr>
+<td><a href="VerticalPositionDatumEnum/">VerticalPositionDatumEnum</a></td>
+<td>references for vertical position</td>
 </tr>
 </tbody>
 </table>

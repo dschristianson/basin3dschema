@@ -486,8 +486,8 @@
 
 
 <h1 id="slot-description">Slot: description</h1>
-<p><em>A human-readable description for a thing</em></p>
-<p>URI: <a href="http://schema.org/description">schema:description</a>
+<p><em>more detailed explanation of the feature</em></p>
+<p>URI: <a href="https://w3id.org/dschristianson/basin3dschema/description">basin3dschema:description</a>
 Alias: description</p>
 <!-- no inheritance hierarchy -->
 
@@ -502,19 +502,24 @@ Alias: description</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td><a href="../SpatialSamplingFeature/">SpatialSamplingFeature</a></td>
+<td>A spatially-defined feature where sampling is conducted</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Person/">Person</a></td>
-<td>Represents a Person</td>
+<td><a href="../Feature/">Feature</a></td>
+<td>A general feature upon which an observation can be made</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
-<td>A monitoring feature represents a real-world location where observations are ...</td>
+<td>A feature upon which monitoring is made</td>
 <td>yes</td>
+</tr>
+<tr>
+<td><a href="../SamplingFeature/">SamplingFeature</a></td>
+<td>A feature where sampling is conducted</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
@@ -534,11 +539,7 @@ Alias: description</p>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
-</tr>
-<tr>
-<td>Slot URI</td>
-<td><a href="http://schema.org/description">schema:description</a></td>
+<td><a href="../Feature/">Feature</a></td>
 </tr>
 </tbody>
 </table>
@@ -573,7 +574,7 @@ Alias: description</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:description</td>
+<td>basin3dschema:description</td>
 </tr>
 <tr>
 <td>native</td>
@@ -584,13 +585,12 @@ Alias: description</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A human-readable description for a thing</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">more detailed explanation of the feature</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/dschristianson/basin3dschema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:description</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feature</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

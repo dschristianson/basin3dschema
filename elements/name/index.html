@@ -486,8 +486,8 @@
 
 
 <h1 id="slot-name">Slot: name</h1>
-<p><em>A human-readable name for a thing</em></p>
-<p>URI: <a href="http://schema.org/name">schema:name</a>
+<p><em>Human readable name</em></p>
+<p>URI: <a href="https://w3id.org/dschristianson/basin3dschema/name">basin3dschema:name</a>
 Alias: name</p>
 <!-- no inheritance hierarchy -->
 
@@ -502,24 +502,29 @@ Alias: name</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
+<td>A feature upon which monitoring is made</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Feature/">Feature</a></td>
+<td>A general feature upon which an observation can be made</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SamplingFeature/">SamplingFeature</a></td>
+<td>A feature where sampling is conducted</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../DataSource/">DataSource</a></td>
 <td>Represents a data source containing credentials, location, and identification</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td><a href="../SpatialSamplingFeature/">SpatialSamplingFeature</a></td>
+<td>A spatially-defined feature where sampling is conducted</td>
 <td>no</td>
-</tr>
-<tr>
-<td><a href="../Person/">Person</a></td>
-<td>Represents a Person</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
-<td>A monitoring feature represents a real-world location where observations are ...</td>
-<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -539,11 +544,7 @@ Alias: name</p>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../NamedThing/">NamedThing</a>, <a href="../DataSource/">DataSource</a></td>
-</tr>
-<tr>
-<td>Slot URI</td>
-<td><a href="http://schema.org/name">schema:name</a></td>
+<td><a href="../DataSource/">DataSource</a>, <a href="../Feature/">Feature</a></td>
 </tr>
 </tbody>
 </table>
@@ -578,7 +579,7 @@ Alias: name</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:name</td>
+<td>basin3dschema:name</td>
 </tr>
 <tr>
 <td>native</td>
@@ -589,14 +590,13 @@ Alias: name</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A human-readable name for a thing</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human readable name</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/dschristianson/basin3dschema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:name</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataSource</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feature</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

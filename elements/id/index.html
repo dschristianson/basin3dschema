@@ -502,18 +502,43 @@ Alias: id</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../Base/">Base</a></td>
+<td>Base class for object to synthesize</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Observation/">Observation</a></td>
+<td>OGC OM_Observation feature type</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
+<td>A feature upon which monitoring is made</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Feature/">Feature</a></td>
+<td>A general feature upon which an observation can be made</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
+<td>Complex relationship between sampling features</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SamplingFeature/">SamplingFeature</a></td>
+<td>A feature where sampling is conducted</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../DataSource/">DataSource</a></td>
 <td>Represents a data source containing credentials, location, and identification</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
-<td>A monitoring feature represents a real-world location where observations are ...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
-<td>Complex relationship between sampling features</td>
+<td><a href="../RelatedSamplingFeature/">RelatedSamplingFeature</a></td>
+<td>Class that represents a related sampling feature and its role relative to the...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -522,8 +547,13 @@ Alias: id</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
+<td><a href="../ObservationMeasurementTimeSeries/">ObservationMeasurementTimeSeries</a></td>
+<td>Represents a time-series of measurement observations collected at a monitorin...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SpatialSamplingFeature/">SpatialSamplingFeature</a></td>
+<td>A spatially-defined feature where sampling is conducted</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -544,7 +574,7 @@ Alias: id</p>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../NamedThing/">NamedThing</a>, <a href="../DataSource/">DataSource</a>, <a href="../RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
+<td><a href="../DataSource/">DataSource</a>, <a href="../Base/">Base</a></td>
 </tr>
 <tr>
 <td>Slot URI</td>
@@ -619,9 +649,8 @@ Alias: id</p>
 <span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataSource</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RelatedSamplingFeatureComplex</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Base</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>

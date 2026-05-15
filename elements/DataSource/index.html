@@ -314,7 +314,7 @@
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for a thing</td>
+<td>Human readable name</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -349,13 +349,67 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../AttributeMapping/">AttributeMapping</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../Base/">Base</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
 <td><a href="../RelatedSamplingFeatureComplex/">RelatedSamplingFeatureComplex</a></td>
 <td><a href="../datasource/">datasource</a></td>
 <td>range</td>
 <td><a href="./">DataSource</a></td>
 </tr>
 <tr>
+<td><a href="../Feature/">Feature</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../SamplingFeature/">SamplingFeature</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../SpatialSamplingFeature/">SpatialSamplingFeature</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../MonitoringFeature/">MonitoringFeature</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../RelatedSamplingFeature/">RelatedSamplingFeature</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../Observation/">Observation</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
 <td><a href="../ObservationMeasurementTimeSeries/">ObservationMeasurementTimeSeries</a></td>
+<td><a href="../datasource/">datasource</a></td>
+<td>range</td>
+<td><a href="./">DataSource</a></td>
+</tr>
+<tr>
+<td><a href="../Person/">Person</a></td>
 <td><a href="../datasource/">datasource</a></td>
 <td>range</td>
 <td><a href="./">DataSource</a></td>
@@ -417,22 +471,19 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataSource</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataSource</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RelatedSamplingFeatureComplex</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Base</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A human-readable name for a thing</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human readable name</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/dschristianson/basin3dschema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:name</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataSource</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataSource</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Feature</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">id_prefix</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id_prefix</span>

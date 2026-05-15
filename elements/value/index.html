@@ -502,13 +502,28 @@ Alias: value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../VerticalExtent/">VerticalExtent</a></td>
-<td>Vertical positioning information with datum, type, and elevation</td>
+<td><a href="../ResultPointFloat/">ResultPointFloat</a></td>
+<td></td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ResultListTVP/">ResultListTVP</a></td>
+<td></td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../TimeSeriesResult/">TimeSeriesResult</a></td>
 <td>Time series result data containing values and quality information</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TimeValuePair/">TimeValuePair</a></td>
+<td>a time value pair</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../VerticalCoordinate/">VerticalCoordinate</a></td>
+<td>Vertical positioning information with datum, type, and elevation</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -529,7 +544,7 @@ Alias: value</p>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../VerticalExtent/">VerticalExtent</a>, <a href="../TimeSeriesResult/">TimeSeriesResult</a></td>
+<td><a href="../VerticalCoordinate/">VerticalCoordinate</a>, <a href="../TimeSeriesResult/">TimeSeriesResult</a>, <a href="../TimeValuePair/">TimeValuePair</a>, <a href="../ResultPointFloat/">ResultPointFloat</a>, <a href="../ResultListTVP/">ResultListTVP</a></td>
 </tr>
 </tbody>
 </table>
@@ -580,8 +595,11 @@ Alias: value</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VerticalExtent</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VerticalCoordinate</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TimeSeriesResult</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TimeValuePair</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ResultPointFloat</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ResultListTVP</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
 </code></pre></div>
 </details>
